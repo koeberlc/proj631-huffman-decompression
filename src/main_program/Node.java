@@ -62,24 +62,7 @@ public class Node {
 	public void setValue(Float value) {
 		this.value = value;
 	}
-	
-	public String getListPrefixe() {
-		String res = "";
-		Node node = this;
-		
-		if(node != null) {
-			res = node.getLabel() + node.getListPrefixe(node.getLeftChild()) + node.getListPrefixe(node.getRightChild());
-		}
-		return res;
-	}
-	public String getListPrefixe(Node node) {
-		String res = "";
-		
-		if(node != null) {
-			res = node.getLabel() + node.getListPrefixe(node.getLeftChild()) + node.getListPrefixe(node.getRightChild());
-		}
-		return res;
-	}
+
 	public boolean isLeaf() {
 		return this.getRightChild() == null && this.getRightChild() == null;
 	}
