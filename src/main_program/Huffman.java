@@ -23,23 +23,26 @@ public class Huffman {
 		Node current = root;
         for(int i = 0; i < text_compressed.length(); i++) {
         	char c = text_compressed.charAt(i);
-        	if (c == "1".charAt(0)){
-                System.out.println("droit " + current);
-                current = current.getRightChild();
-            } else {
-                System.out.println("gauche " + current);
-                current = current.getLeftChild();;  
-            }
-        	
         	if (current.isLeaf()) {
                 result += current.getLabel();
                 current = root;
             }
-        	
+        	if (c == "0".charAt(0)){
+                System.out.println("gauche " + current);
+                current = current.getLeftChild();;  
+                
+            } else {
+                System.out.println("droit " + current);
+                current = current.getRightChild();
+            }
+
+        }
+        
+        if (current.isLeaf()) {
+            result += current.getLabel();
+            current = root;
         }
         System.out.println(result);
-		
-		
 	}
 	
 	
