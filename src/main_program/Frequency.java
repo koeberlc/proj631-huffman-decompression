@@ -10,22 +10,22 @@ import java.util.Map;
 public class Frequency {
 	
 	private FileFunction file;
-	private Hashtable<String,String> frequencyDict = new Hashtable<String,String>();
+	private List<String> frequencyDict;
 	private int nbChar = 0;
 	
 	public Frequency(FileFunction file) {
 		super();
 		this.file = file;
-		this.frequencyDict = this.file.FrequencyReader();
+		this.frequencyDict = this.file.FileReader(true);
 		this.initNbChar();
 	}
 	
 
-	public Hashtable<String, String> getFrequencyDict() {
+	public List<String> getFrequencyDict() {
 		return frequencyDict;
 	}
 
-	public void setFrequencyDict(Hashtable<String, String> frequencyDict) {
+	public void setFrequencyDict(List<String> frequencyDict) {
 		this.frequencyDict = frequencyDict;
 		this.initNbChar();
 	}
@@ -48,8 +48,8 @@ public class Frequency {
 	
 	public void initNbChar() {
 		nbChar = 0;
-		for(String v : frequencyDict.values()) {
-			nbChar += Integer.parseInt(v);
+		for(String v : frequencyDict) {
+			nbChar += Integer.parseInt(v.substring(2));
 		}
 	}
 	

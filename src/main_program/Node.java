@@ -4,27 +4,27 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Node {
+public class Node implements Comparable<Node> {
 	private String label;
-	private String frequence;
+	private Integer frequence;
 	private Node left_child = null;
 	private Node right_child = null;
-	private Float value = null;
+	private String value = null;
 	
-	public Node(String label, String frequence) {
+	public Node(String label, Integer frequence) {
 		super();
 		this.label = label;
 		this.frequence = frequence;
 	}
 	
-	public Node(String label, String frequence, Node node) {
+	public Node(String label, Integer frequence, Node node) {
 		super();
 		this.label = label;
 		this.frequence = frequence;
 		this.left_child = node;
 	}
 	
-	public Node(String label, String frequence, Node left_node, Node right_node) {
+	public Node(String label, Integer frequence, Node left_node, Node right_node) {
 		super();
 		this.label = label;
 		this.frequence = frequence;
@@ -38,10 +38,10 @@ public class Node {
 	public void setLabel(String label) {
 		this.label = label;
 	}
-	public String getFrequence() {
+	public Integer getFrequence() {
 		return frequence;
 	}
-	public void setFrequence(String frequence) {
+	public void setFrequence(Integer frequence) {
 		this.frequence = frequence;
 	}
 	public Node getLeftChild() {
@@ -56,19 +56,20 @@ public class Node {
 	public void setRightChild(Node right_node) {
 		this.right_child = right_node;
 	}
-	public Float getValue() {
+	public String getValue() {
 		return value;
 	}
-	public void setValue(Float value) {
+	public void setValue(String value) {
 		this.value = value;
 	}
+	
 	
 	public String getListPrefixe() {
 		String res = "";
 		Node node = this;
 		
 		if(node != null) {
-			res = node.getLabel() + node.getListPrefixe(node.getLeftChild()) + node.getListPrefixe(node.getRightChild());
+			res = node.getLabel() + " " + node.getFrequence() + " | " + node.getListPrefixe(node.getLeftChild()) + node.getListPrefixe(node.getRightChild());
 		}
 		return res;
 	}
@@ -76,7 +77,7 @@ public class Node {
 		String res = "";
 		
 		if(node != null) {
-			res = node.getLabel() + node.getListPrefixe(node.getLeftChild()) + node.getListPrefixe(node.getRightChild());
+			res = node.getLabel() + " " + node.getFrequence() + " | " + node.getListPrefixe(node.getLeftChild()) + node.getListPrefixe(node.getRightChild());
 		}
 		return res;
 	}
@@ -122,5 +123,14 @@ public class Node {
 	}
 		
 	
+	@Override
+    public int compareTo(Node o) {
+        return this.getFrequence().compareTo(o.getFrequence());
+    }
+
+	@Override
+	public String toString() {
+		return label + " " + frequence;
+	}
 	
 }
