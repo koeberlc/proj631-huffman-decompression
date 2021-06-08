@@ -6,7 +6,7 @@ public class Huffman {
 	public void decompress(String filename){
 		String path = "src/text/";
 		FileFunction file_compressed = new FileFunction(path + "compressed/" + filename + ".txt");
-		FileFunction file_not_compressed = new FileFunction(path + "original/" + filename + ".txt");
+		FileFunction file_original = new FileFunction(path + "original/" + filename + ".txt");
 		FileFunction file_lexicon = new FileFunction(path + "lexicon/" + filename + ".txt");
 		
 		String text_compressed = file_compressed.FileReader();
@@ -23,23 +23,28 @@ public class Huffman {
 		Node current = root;
         for(int i = 0; i < text_compressed.length(); i++) {
         	char c = text_compressed.charAt(i);
-        	if (c == "1".charAt(0)){
-                System.out.println("droit " + current);
-                current = current.getRightChild();
-            } else {
-                System.out.println("gauche " + current);
-                current = current.getLeftChild();;  
-            }
-        	
         	if (current.isLeaf()) {
                 result += current.getLabel();
                 current = root;
             }
-        	
+        	if (c == "0".charAt(0)){
+                System.out.println("gauche " + current);
+                current = current.getLeftChild();;  
+                
+            } else {
+                System.out.println("droit " + current);
+                current = current.getRightChild();
+            }
+
         }
+        
+        if (current.isLeaf()) {
+            result += current.getLabel();
+            current = root;
+        }
+        
+        file_original.FileWriter(result);
         System.out.println(result);
-		
-		
 	}
 	
 	
