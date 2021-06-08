@@ -25,7 +25,6 @@ public class Huffman {
 		
 		Frequency frequence = new Frequency(file_lexicon);
 		
-		
 		Node root = this.makeTree(frequence.getFrequencyDict());
 		
 		String result = this.getOriginalText(root, text_compressed);
@@ -60,7 +59,7 @@ public class Huffman {
 			list_node.remove(0);
 			list_node.remove(0);
 			list_node.add(current_node);
-			System.out.println(list_node);
+			//System.out.println(list_node);
 			
 		}
 		
@@ -108,11 +107,9 @@ public class Huffman {
                 current = root;
             }
         	if (c == "0".charAt(0)){
-                System.out.println("gauche " + current);
                 current = current.getLeftChild();;  
                 
             } else {
-                System.out.println("droit " + current);
                 current = current.getRightChild();
             }
 
